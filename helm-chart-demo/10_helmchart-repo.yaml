@@ -1,0 +1,10 @@
+apiVersion: apps.open-cluster-management.io/v1
+kind: Channel
+metadata:
+  annotations:
+    apps.open-cluster-management.io/reconcile-rate: medium
+  name: helmchart-repo
+  namespace: rhacm-demo
+spec:
+  type: HelmRepo
+  pathname: 'https://raw.githubusercontent.com/marcoklaassen/helmchart-repo/gh-pages/docs'

@@ -1,0 +1,23 @@
+apiVersion: apps.open-cluster-management.io/v1
+kind: Subscription
+metadata:
+  labels:
+    app: sample-config
+    apps.open-cluster-management.io/reconcile-rate: medium
+  name: custom-sample-config-subscription
+spec:
+  channel: rhacm-demo/helmchart-repo
+  name: sample-config
+  packageOverrides:
+  - packageName: sample-config
+    packageAlias: custom-rhacm-helm-demo
+    packageOverrides:
+    - path: spec
+      value:
+        foo: baz
+  packageFilter:
+    version: "1.6.0"
+  placement:
+    placementRef:
+      kind: PlacementRule
+      name: all-openshift-clusters-placement-rule
